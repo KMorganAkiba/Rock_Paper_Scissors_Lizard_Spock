@@ -1,18 +1,21 @@
 //set initial global variables
-let playerOneSelection = '';
-let playerTWoSelection = '';
+let playerOneSelection ;
+let playerTWoSelection ;
 let playerOneScore = 0;
 let playerTwoScore = 0;
+
+//array of valid choices
 const choices = ['rock', 'paper', 'scissors', 'lizard', 'spock'];
 
-
+// generates a random valid choice for the computer opponent. 
 function getComputerChoice(){
     playerTWoSelection = choices[Math.floor(Math.random()*choices.length)];
         return playerTWoSelection
 }
 
+//function to take player one and player twos selection and determine the victor of the contest.
 function victoryCondition(a,b){
-    // rock victory logic
+    // rock victory logic inculding score increment for the winner
     if (a === 'rock' && (b === 'lizard' || b === 'scissors')){
             alert('YOU WIN, '+ a + ' crushes ' + b+ '!');
             playerOneScore += 1;
@@ -22,7 +25,7 @@ function victoryCondition(a,b){
             playerTwoScore += 1;
     }
     
-    // paper victory logic
+    // paper victory logic inculding score increment for the winner
     if (a === 'paper' && (b === 'rock' || b === 'spock')){
         if (b === 'rock'){
             alert('YOU WIN, '+ a + ' covers ' + b+ '!');
@@ -44,7 +47,7 @@ function victoryCondition(a,b){
         }
     }
 
-    // scissors victory logic
+    // scissors victory logic inculding score increment for the winner
     if (a === 'scissors' && (b === 'paper' || b === 'lizard')){
         if (b === 'paper'){
             alert('YOU WIN, '+ a + ' cuts ' + b+ '!');
@@ -66,7 +69,7 @@ function victoryCondition(a,b){
         }
     }
 
-    // lizard victory logic
+    // lizard victory logic inculding score increment for the winner
     if (a === 'lizard' && (b === 'paper' || b === 'spock')){
         if (b === 'paper'){
             alert('YOU WIN, '+ a + ' eats ' + b+ '!');
@@ -88,7 +91,7 @@ function victoryCondition(a,b){
         }
     }
 
-    // spock victory logic
+    // spock victory logic inculding score increment for the winner
     if (a === 'spock' && (b === 'rock' || b === 'scissors')){
         if (b === 'rock'){
             alert('YOU WIN, '+ a + ' vaporizes ' + b+ '!');
@@ -116,29 +119,30 @@ function victoryCondition(a,b){
     
 }
 
+//announce the winner of the game
+function contestWinner(scoreOne,scoreTwo){
+    if (scoreOne == 5){
+        alert('The contest has been decided, You were victorious!')
+    }
+    else{
+        alert('You have suffered defeat, May Shame run down your spine!')
+    }
+}
 
-//promt user with the premise of the game
-
-//initiate game loop
+//game loop that runs until either player one or player two scores 5 battle victories 
+for (let i = 0; playerOneScore < 5 && playerTwoScore < 5; i++ ){
     
-    
-//validate users selection 
+    //prompts user to enter their combat choice.     
+    let playerOnePrompt = prompt('Choose your wisely','');
+    playerOneSelection = playerOnePrompt.toLowerCase(playerOnePrompt);
 
-//compare players variables looping through win conditions
+    //Gets computers choice
+    getComputerChoice();
+       
+    //compares players variables looping through win conditions
+    victoryCondition(playerOneSelection,playerTWoSelection);
+}
+// annouces contestVictor after game loop completes
+contestWinner(playerOneScore,playerTwoScore);
 
-//incrament winners tally by 1 
-
-//check to see if either side has won 5 games
-
-//if yes end game and announce winner
-
-//if no loop back throught the game until victory condition has been met.
-
-        let playerOnePrompt = prompt('Choose your wisely','');
-        playerOneSelection = playerOnePrompt.toLowerCase(playerOnePrompt);
-        console.log(playerOneSelection);
-        getComputerChoice();
-        console.log(playerTWoSelection);
-        victoryCondition(playerOneSelection,playerTWoSelection);
-  
     
